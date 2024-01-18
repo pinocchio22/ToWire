@@ -10,6 +10,6 @@ import Foundation
 struct ExchangeRateModel: Codable {
     let country: String
     let price: Double
-    let timeStamp: Date
+    let timeStamp: Double
     let type: CurrencyType
 }

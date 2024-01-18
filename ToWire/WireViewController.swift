@@ -97,15 +97,18 @@ private extension WireViewController {
     }
 
     func updateUI(selectedItem: ExchangeRateModel) {
-        if let pickerCell = wireTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PickerTableViewCell {
-            pickerCell.updateUI(updatePickerItem: selectedItem.type.rawValue)
-        }
+        DispatchQueue.main.async {
+            if let pickerCell = self.wireTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PickerTableViewCell {
+                pickerCell.updateUI(updatePickerItem: selectedItem.type.rawValue)
+            }
 
-        if let firstTextCell = wireTableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? TextTableViewCell,
-           let secondTextCell = wireTableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? TextTableViewCell
-        {
-            firstTextCell.updateUI(updateDescription: String(selectedItem.price))
-            secondTextCell.updateUI(updateDescription: selectedItem.timeStamp)
+            if let firstTextCell = self.wireTableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? TextTableViewCell,
+               let secondTextCell = self.wireTableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? TextTableViewCell
+            {
+                firstTextCell.updateUI(updateDescription: String(selectedItem.price))
+                secondTextCell.updateUI(updateDescription: selectedItem.timeStamp.toString())
+            }
+            print(selectedItem)
         }
     }
 }
@@ -150,6 +153,6 @@ extension WireViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        wireViewModel.selectedItem.value = CurrencyType.allCases[1]
+        wireViewModel.selectedItem.value = CurrencyType.allCases[row]
     }
 }

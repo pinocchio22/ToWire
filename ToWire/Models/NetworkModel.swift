@@ -10,7 +10,7 @@ import Foundation
 struct NetworkModel: Codable {
     let success: Bool
     let terms, privacy: String
-    let timestamp: Date
+    let timestamp: Double
     let source: String
     let quotes: [String: Double]
 }

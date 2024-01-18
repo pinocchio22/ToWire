@@ -30,6 +30,7 @@
 		77E632012B5941E300E225F5 /* UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E632002B5941E300E225F5 /* UIModel.swift */; };
 		77E632032B59423000E225F5 /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E632022B59423000E225F5 /* CellType.swift */; };
 		77E632062B5945E000E225F5 /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E632052B5945E000E225F5 /* UITableViewCell+.swift */; };
+		77E632082B59624200E225F5 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E632072B59624200E225F5 /* Double+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		77E632002B5941E300E225F5 /* UIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIModel.swift; sourceTree = "<group>"; };
 		77E632022B59423000E225F5 /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
 		77E632052B5945E000E225F5 /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
+		77E632072B59624200E225F5 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				77E632052B5945E000E225F5 /* UITableViewCell+.swift */,
+				77E632072B59624200E225F5 /* Double+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				77E631AC2B58FC7600E225F5 /* AppDelegate.swift in Sources */,
 				77E631E32B590B7000E225F5 /* Typography.swift in Sources */,
 				77E632032B59423000E225F5 /* CellType.swift in Sources */,
+				77E632082B59624200E225F5 /* Double+.swift in Sources */,
 				77E631ED2B5915CC00E225F5 /* InputTableViewCell.swift in Sources */,
 				77E631F92B59239700E225F5 /* CurrencyType.swift in Sources */,
 				77E631F52B59184C00E225F5 /* NetworkManager.swift in Sources */,
