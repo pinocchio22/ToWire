@@ -14,6 +14,7 @@ class CustomLabel: UILabel {
         self.text = text
         self.font = font
         self.textColor = textColor
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
 
     @available(*, unavailable)
