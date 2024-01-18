@@ -8,7 +8,7 @@
 import UIKit
 
 class WireViewController: UIViewController {
-    // Components
+    // MARK: Components
     private let titleLabel = CustomLabel(text: "환율 계산", font: Typography.title.font)
     
     private let wireTableView: UITableView = {
@@ -22,6 +22,26 @@ class WireViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        setUp()
     }
 }
 
+private extension WireViewController {
+    // MARK: setUp
+    func setUp() {
+        wireTableView.delegate = self
+        wireTableView.dataSource = self
+    }
+}
+
+extension WireViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    
+}
