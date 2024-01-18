@@ -8,15 +8,13 @@
 import Foundation
 
 class NetworkManager {
-    func fetchData(completion: @escaping ([ExchangeRateModel]) -> Void) {
+    func fetchData(completion: @escaping (ExchangeRateModel) -> Void) {
         let session = URLSession.shared
         
         var urlComponents = URLComponents(string: "http://www.apilayer.net/api/live?")
         let myKey = Bundle.main.object(forInfoDictionaryKey: "CURRENCY_LAYER_KEY") as? String
         print("@@@ \(String(describing: myKey))")
         let keyQuery = URLQueryItem(name: "access_key", value: myKey)
-        
-        var priceList = [ExchangeRateModel]()
         
         urlComponents?.queryItems?.append(keyQuery)
 
@@ -39,7 +37,7 @@ class NetworkManager {
                     networkModel.quotes.forEach { item in
                         switch item.key {
                         case CurrencyType.krw.rawValue, CurrencyType.jpy.rawValue, CurrencyType.php.rawValue:
-                            priceList.append(ExchangeRateModel(country: item.key, price: item.value))
+                            completion(ExchangeRateModel(country: item.key, price: item.value))
                         default: break
                         }
                     }
@@ -49,7 +47,6 @@ class NetworkManager {
             } else {
                 print("\(String(describing: error))")
             }
-            completion(priceList)
         }
         dataTask.resume()
     }

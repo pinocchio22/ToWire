@@ -17,9 +17,9 @@ enum Typography {
         case .title:
             return .systemFont(ofSize: 40, weight: .bold)
         case .smallContent:
-            return .systemFont(ofSize: 16, weight: .medium)
+            return .systemFont(ofSize: 16, weight: .light)
         case .largeContent:
-            return .systemFont(ofSize: 20, weight: .bold)
+            return .systemFont(ofSize: 20, weight: .medium)
         }
     }
 }

@@ -10,11 +10,11 @@ import UIKit
 class TextTableViewCell: UITableViewCell {
     // MARK: Components
 
-    private let titleLabel = CustomLabel(text: "text", font: Typography.smallContent.font)
+    private let titleLabel = CustomLabel(text: "text", font: Typography.smallContent.font, alignment: .right)
     
-    private let separatorLabel = CustomLabel(text: ":", font: Typography.smallContent.font)
+    private let separatorLabel = CustomLabel(text: ":", font: Typography.smallContent.font, alignment: .center)
     
-    private let descriptionLabel = CustomLabel(text: "description", font: Typography.smallContent.font)
+    private let descriptionLabel = CustomLabel(text: "description", font: Typography.smallContent.font, alignment: .left)
     
     // MARK: LifeCycle
 
@@ -40,6 +40,8 @@ private extension TextTableViewCell {
     // MARK: SetUp
     
     func setUp() {
+        self.contentView.isUserInteractionEnabled = false
+        self.selectionStyle = .none
         setUpConstraints()
     }
 }
@@ -54,23 +56,23 @@ private extension TextTableViewCell {
         
         NSLayoutConstraint.activate([
             // titleLabel
-            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constanst.defaults.vertical),
             titleLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25),
+            titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2),
                     
             // separatorLabel
-            separatorLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            separatorLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constanst.defaults.vertical),
             separatorLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             separatorLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             separatorLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.05),
                     
             // descriptionLabel
-            descriptionLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: Constanst.defaults.vertical),
             descriptionLabel.leadingAnchor.constraint(equalTo: separatorLabel.trailingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             descriptionLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            descriptionLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7)
+            descriptionLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75)
         ])
     }
 }

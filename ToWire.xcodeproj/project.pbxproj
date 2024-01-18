@@ -27,6 +27,9 @@
 		77E631F22B59181500E225F5 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631F12B59181500E225F5 /* NetworkModel.swift */; };
 		77E631F52B59184C00E225F5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631F42B59184C00E225F5 /* NetworkManager.swift */; };
 		77E631F92B59239700E225F5 /* CurrencyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631F82B59239700E225F5 /* CurrencyType.swift */; };
+		77E632012B5941E300E225F5 /* UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E632002B5941E300E225F5 /* UIModel.swift */; };
+		77E632032B59423000E225F5 /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E632022B59423000E225F5 /* CellType.swift */; };
+		77E632062B5945E000E225F5 /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E632052B5945E000E225F5 /* UITableViewCell+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		77E631F42B59184C00E225F5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		77E631F82B59239700E225F5 /* CurrencyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyType.swift; sourceTree = "<group>"; };
 		77E631FE2B593B2900E225F5 /* Key.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Key.xcconfig; sourceTree = "<group>"; };
+		77E632002B5941E300E225F5 /* UIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIModel.swift; sourceTree = "<group>"; };
+		77E632022B59423000E225F5 /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
+		77E632052B5945E000E225F5 /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,13 +131,12 @@
 			children = (
 				77E631AF2B58FC7600E225F5 /* WireViewController.swift */,
 				77E631DC2B590AC200E225F5 /* WireViewModel.swift */,
-				77E631E82B590FD800E225F5 /* TextTableViewCell.swift */,
-				77E631EA2B59146D00E225F5 /* PickerTableViewCell.swift */,
-				77E631EC2B5915CC00E225F5 /* InputTableViewCell.swift */,
+				77E631FF2B5941CB00E225F5 /* Cells */,
 				77E631EE2B5916C000E225F5 /* Models */,
 				77E631F32B59183800E225F5 /* Manager */,
 				77E631DF2B590AFB00E225F5 /* Helper */,
 				77E631DE2B590ADD00E225F5 /* SharedViews */,
+				77E632042B5945CB00E225F5 /* Extensions */,
 				77E631DB2B5908BB00E225F5 /* Resource */,
 			);
 			path = ToWire;
@@ -181,6 +186,7 @@
 				77E631E22B590B7000E225F5 /* Typography.swift */,
 				77E631E42B590BE600E225F5 /* Observable.swift */,
 				77E631F82B59239700E225F5 /* CurrencyType.swift */,
+				77E632022B59423000E225F5 /* CellType.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -190,6 +196,7 @@
 			children = (
 				77E631F12B59181500E225F5 /* NetworkModel.swift */,
 				77E631EF2B5916F900E225F5 /* ExchangeRateModel.swift */,
+				77E632002B5941E300E225F5 /* UIModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -200,6 +207,24 @@
 				77E631F42B59184C00E225F5 /* NetworkManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		77E631FF2B5941CB00E225F5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				77E631E82B590FD800E225F5 /* TextTableViewCell.swift */,
+				77E631EA2B59146D00E225F5 /* PickerTableViewCell.swift */,
+				77E631EC2B5915CC00E225F5 /* InputTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		77E632042B5945CB00E225F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				77E632052B5945E000E225F5 /* UITableViewCell+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,12 +360,15 @@
 				77E631E92B590FD800E225F5 /* TextTableViewCell.swift in Sources */,
 				77E631EB2B59146D00E225F5 /* PickerTableViewCell.swift in Sources */,
 				77E631E12B590B0700E225F5 /* Constants.swift in Sources */,
+				77E632062B5945E000E225F5 /* UITableViewCell+.swift in Sources */,
 				77E631F22B59181500E225F5 /* NetworkModel.swift in Sources */,
 				77E631B02B58FC7600E225F5 /* WireViewController.swift in Sources */,
 				77E631DD2B590AC200E225F5 /* WireViewModel.swift in Sources */,
 				77E631E52B590BE600E225F5 /* Observable.swift in Sources */,
+				77E632012B5941E300E225F5 /* UIModel.swift in Sources */,
 				77E631AC2B58FC7600E225F5 /* AppDelegate.swift in Sources */,
 				77E631E32B590B7000E225F5 /* Typography.swift in Sources */,
+				77E632032B59423000E225F5 /* CellType.swift in Sources */,
 				77E631ED2B5915CC00E225F5 /* InputTableViewCell.swift in Sources */,
 				77E631F92B59239700E225F5 /* CurrencyType.swift in Sources */,
 				77E631F52B59184C00E225F5 /* NetworkManager.swift in Sources */,
