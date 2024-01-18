@@ -14,6 +14,7 @@ class WireViewController: UIViewController {
     private let wireTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
@@ -27,7 +28,7 @@ class WireViewController: UIViewController {
 }
 
 private extension WireViewController {
-    // MARK: setUp
+    // MARK: SetUp
     func setUp() {
         wireTableView.delegate = self
         wireTableView.dataSource = self

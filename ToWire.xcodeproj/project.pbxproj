@@ -21,6 +21,7 @@
 		77E631E52B590BE600E225F5 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631E42B590BE600E225F5 /* Observable.swift */; };
 		77E631E72B590CB500E225F5 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631E62B590CB500E225F5 /* CustomLabel.swift */; };
 		77E631E92B590FD800E225F5 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631E82B590FD800E225F5 /* TextTableViewCell.swift */; };
+		77E631EB2B59146D00E225F5 /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631EA2B59146D00E225F5 /* PickerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		77E631E42B590BE600E225F5 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		77E631E62B590CB500E225F5 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		77E631E82B590FD800E225F5 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
+		77E631EA2B59146D00E225F5 /* PickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				77E631AF2B58FC7600E225F5 /* WireViewController.swift */,
 				77E631DC2B590AC200E225F5 /* WireViewModel.swift */,
 				77E631E82B590FD800E225F5 /* TextTableViewCell.swift */,
+				77E631EA2B59146D00E225F5 /* PickerTableViewCell.swift */,
 				77E631DF2B590AFB00E225F5 /* Helper */,
 				77E631DE2B590ADD00E225F5 /* SharedViews */,
 				77E631DB2B5908BB00E225F5 /* Resource */,
@@ -297,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77E631E92B590FD800E225F5 /* TextTableViewCell.swift in Sources */,
+				77E631EB2B59146D00E225F5 /* PickerTableViewCell.swift in Sources */,
 				77E631E12B590B0700E225F5 /* Constants.swift in Sources */,
 				77E631B02B58FC7600E225F5 /* WireViewController.swift in Sources */,
 				77E631DD2B590AC200E225F5 /* WireViewModel.swift in Sources */,
