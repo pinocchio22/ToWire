@@ -9,7 +9,11 @@ import Foundation
 
 class WireViewModel {
     // MARK: Properties
-    let networkManager = NetworkManager()
+    private let networkManager = NetworkManager()
+    
+    private let pickerItem = ["한국(KRW)", "일본(JPY)", "필리핀(PHP)"]
+    
+    var selectedItem: Observable<String> = Observable("한국(KRW)")
     
     let uiModelList = [
         UIModel(title: "송금국가", description: "미국(USD)", type: .text),
@@ -26,5 +30,13 @@ class WireViewModel {
     
     func getDataCount() -> Int {
         return uiModelList.count
+    }
+    
+    func getPickerItem() -> [String] {
+        return pickerItem
+    }
+    
+    func getPickerCount() -> Int {
+        return pickerItem.count
     }
 }

@@ -17,7 +17,8 @@ class InputTableViewCell: UITableViewCell {
     private let inputTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textAlignment = .left
+        textField.textAlignment = .right
+        textField.placeholder = "금액"
         return textField
     }()
     

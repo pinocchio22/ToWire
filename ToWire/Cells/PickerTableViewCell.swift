@@ -53,10 +53,6 @@ private extension PickerTableViewCell {
         selectionStyle = .none
         setUpConstraints()
     }
-}
-
-private extension PickerTableViewCell {
-    // MARK: Methods
     
     func setUpConstraints() {
         addSubview(titleLabel)
@@ -83,5 +79,18 @@ private extension PickerTableViewCell {
             pickerTextField.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             pickerTextField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75)
         ])
+    }
+}
+
+extension PickerTableViewCell {
+    // MARK: Methods
+    
+    func updateUI(updatePickerItem: String) {
+        pickerTextField.text = updatePickerItem
+    }
+    
+    func setDelegate(view: UIViewController & UIPickerViewDelegate & UIPickerViewDataSource) {
+        pickerView.delegate = view
+        pickerView.dataSource = view
     }
 }

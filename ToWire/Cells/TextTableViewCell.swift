@@ -14,7 +14,7 @@ class TextTableViewCell: UITableViewCell {
     
     private let separatorLabel = CustomLabel(text: ":", font: Typography.smallContent.font, alignment: .center)
     
-    private let descriptionLabel = CustomLabel(text: "description", font: Typography.smallContent.font, alignment: .left)
+    let descriptionLabel = CustomLabel(text: "description", font: Typography.smallContent.font, alignment: .left)
     
     // MARK: LifeCycle
 
@@ -44,10 +44,6 @@ private extension TextTableViewCell {
         self.selectionStyle = .none
         setUpConstraints()
     }
-}
-
-private extension TextTableViewCell {
-    // MARK: Methods
     
     func setUpConstraints() {
         addSubview(titleLabel)
@@ -74,5 +70,12 @@ private extension TextTableViewCell {
             descriptionLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             descriptionLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75)
         ])
+    }
+}
+
+extension TextTableViewCell {
+    // MARK: Methods
+    func updateUI(updateDescription: String) {
+        descriptionLabel.text = updateDescription
     }
 }
