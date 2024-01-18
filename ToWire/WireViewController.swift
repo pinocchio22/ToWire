@@ -78,8 +78,12 @@ private extension WireViewController {
         wireViewModel.selectedItem.bind { selectedItem in
             guard let selectedItem = selectedItem else { return }
             // API call
-            // UI update
-            self.updateUI(selectedItem: selectedItem)
+            self.wireViewModel.getPriceData(currencyType: selectedItem) { data in
+                // UI update
+                if let data = data {
+                    self.updateUI(selectedItem: data)
+                }
+            }
         }
     }
 }
@@ -92,16 +96,16 @@ private extension WireViewController {
         wireTableView.reloadData()
     }
 
-    func updateUI(selectedItem: String) {
+    func updateUI(selectedItem: ExchangeRateModel) {
         if let pickerCell = wireTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PickerTableViewCell {
-            pickerCell.updateUI(updatePickerItem: selectedItem)
+            pickerCell.updateUI(updatePickerItem: selectedItem.type.rawValue)
         }
 
         if let firstTextCell = wireTableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? TextTableViewCell,
            let secondTextCell = wireTableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? TextTableViewCell
         {
-            firstTextCell.updateUI(updateDescription: "바뀐 환율")
-            secondTextCell.updateUI(updateDescription: "바뀐 시간")
+            firstTextCell.updateUI(updateDescription: String(selectedItem.price))
+            secondTextCell.updateUI(updateDescription: selectedItem.timeStamp)
         }
     }
 }
@@ -122,7 +126,7 @@ extension WireViewController: UITableViewDelegate, UITableViewDataSource {
         case .picker:
             let pickerCell = tableView.dequeueReusableCell(withIdentifier: PickerTableViewCell.identifier, for: indexPath) as? PickerTableViewCell
             pickerCell?.setDelegate(view: self)
-            pickerCell?.bind(title: item.title, pickerItem: wireViewModel.selectedItem.value ?? "")
+            pickerCell?.bind(title: item.title, pickerItem: wireViewModel.selectedItem.value?.rawValue ?? "")
             return pickerCell ?? UITableViewCell()
         case .input:
             let inputCell = tableView.dequeueReusableCell(withIdentifier: InputTableViewCell.identifier, for: indexPath) as? InputTableViewCell
@@ -146,6 +150,6 @@ extension WireViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        wireViewModel.selectedItem.value = wireViewModel.getPickerItem()[row]
+        wireViewModel.selectedItem.value = CurrencyType.allCases[1]
     }
 }

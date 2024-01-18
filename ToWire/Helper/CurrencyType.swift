@@ -7,8 +7,12 @@
 
 import Foundation
 
-enum CurrencyType: String {
-    case krw = "USDKRW"
-    case jpy = "USDJPY"
-    case php = "USDPHP"
+enum CurrencyType: String, CaseIterable, Codable {
+    case USDKRW = "한국(KRW)"
+    case USDJPY = "일본(JPY)"
+    case USDPHP = "필리핀(PHP)"
+
+    var description: String {
+        return String(describing: self)
+    }
 }

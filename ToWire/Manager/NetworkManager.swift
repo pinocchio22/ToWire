@@ -13,7 +13,6 @@ class NetworkManager {
         
         var urlComponents = URLComponents(string: "http://www.apilayer.net/api/live?")
         let myKey = Bundle.main.object(forInfoDictionaryKey: "CURRENCY_LAYER_KEY") as? String
-        print("@@@ \(String(describing: myKey))")
         let keyQuery = URLQueryItem(name: "access_key", value: myKey)
         
         urlComponents?.queryItems?.append(keyQuery)
@@ -36,8 +35,12 @@ class NetworkManager {
                     let networkModel = try decoder.decode(NetworkModel.self, from: data)
                     networkModel.quotes.forEach { item in
                         switch item.key {
-                        case CurrencyType.krw.rawValue, CurrencyType.jpy.rawValue, CurrencyType.php.rawValue:
-                            completion(ExchangeRateModel(country: item.key, price: item.value))
+                        case CurrencyType.USDKRW.description:
+                            completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDKRW))
+                        case CurrencyType.USDJPY.description:
+                            completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDJPY))
+                        case CurrencyType.USDPHP.description:
+                            completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDPHP))
                         default: break
                         }
                     }

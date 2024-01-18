@@ -11,9 +11,9 @@ class WireViewModel {
     // MARK: Properties
     private let networkManager = NetworkManager()
     
-    private let pickerItem = ["한국(KRW)", "일본(JPY)", "필리핀(PHP)"]
+    private let pickerItem = CurrencyType.allCases.map { $0.rawValue }
     
-    var selectedItem: Observable<String> = Observable("한국(KRW)")
+    var selectedItem: Observable<CurrencyType> = Observable(CurrencyType.USDKRW)
     
     let uiModelList = [
         UIModel(title: "송금국가", description: "미국(USD)", type: .text),
@@ -24,6 +24,16 @@ class WireViewModel {
     ]
     
     // MARK: Method
+    func getPriceData(currencyType: CurrencyType, completion: @escaping (ExchangeRateModel?) -> Void) {
+        networkManager.fetchData { data in
+            if data.type == currencyType {
+                completion(data)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
     func getUIData() -> [UIModel] {
         return uiModelList
     }
