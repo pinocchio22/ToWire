@@ -19,6 +19,7 @@
 		77E631E12B590B0700E225F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631E02B590B0700E225F5 /* Constants.swift */; };
 		77E631E32B590B7000E225F5 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631E22B590B7000E225F5 /* Typography.swift */; };
 		77E631E52B590BE600E225F5 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631E42B590BE600E225F5 /* Observable.swift */; };
+		77E631E72B590CB500E225F5 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631E62B590CB500E225F5 /* CustomLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		77E631E02B590B0700E225F5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		77E631E22B590B7000E225F5 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		77E631E42B590BE600E225F5 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		77E631E62B590CB500E225F5 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +107,9 @@
 		77E631AA2B58FC7600E225F5 /* ToWire */ = {
 			isa = PBXGroup;
 			children = (
-				77E631DF2B590AFB00E225F5 /* Helper */,
 				77E631AF2B58FC7600E225F5 /* WireViewController.swift */,
 				77E631DC2B590AC200E225F5 /* WireViewModel.swift */,
+				77E631DF2B590AFB00E225F5 /* Helper */,
 				77E631DE2B590ADD00E225F5 /* SharedViews */,
 				77E631DB2B5908BB00E225F5 /* Resource */,
 			);
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				77E631B62B58FC7700E225F5 /* LaunchScreen.storyboard */,
+				77E631E62B590CB500E225F5 /* CustomLabel.swift */,
 			);
 			path = SharedViews;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				77E631AC2B58FC7600E225F5 /* AppDelegate.swift in Sources */,
 				77E631E32B590B7000E225F5 /* Typography.swift in Sources */,
 				77E631AE2B58FC7600E225F5 /* SceneDelegate.swift in Sources */,
+				77E631E72B590CB500E225F5 /* CustomLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
