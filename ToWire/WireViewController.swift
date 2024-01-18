@@ -24,25 +24,30 @@ class WireViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUp()
+        
+        let n = NetworkManager()
+        n.fetchData() { item in
+            print(item)
+        }
     }
 }
 
 private extension WireViewController {
     // MARK: SetUp
     func setUp() {
-        wireTableView.delegate = self
-        wireTableView.dataSource = self
+//        wireTableView.delegate = self
+//        wireTableView.dataSource = self
     }
 }
 
-extension WireViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-    
-    
-}
+//extension WireViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//
+//
+//}

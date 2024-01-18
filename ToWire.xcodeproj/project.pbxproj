@@ -25,6 +25,8 @@
 		77E631ED2B5915CC00E225F5 /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631EC2B5915CC00E225F5 /* InputTableViewCell.swift */; };
 		77E631F02B5916F900E225F5 /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631EF2B5916F900E225F5 /* ExchangeRateModel.swift */; };
 		77E631F22B59181500E225F5 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631F12B59181500E225F5 /* NetworkModel.swift */; };
+		77E631F52B59184C00E225F5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631F42B59184C00E225F5 /* NetworkManager.swift */; };
+		77E631F92B59239700E225F5 /* CurrencyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631F82B59239700E225F5 /* CurrencyType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,9 @@
 		77E631EC2B5915CC00E225F5 /* InputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
 		77E631EF2B5916F900E225F5 /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
 		77E631F12B59181500E225F5 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
+		77E631F42B59184C00E225F5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		77E631F82B59239700E225F5 /* CurrencyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyType.swift; sourceTree = "<group>"; };
+		77E631FE2B593B2900E225F5 /* Key.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Key.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +102,7 @@
 		77E6319F2B58FC7600E225F5 = {
 			isa = PBXGroup;
 			children = (
+				77E631FE2B593B2900E225F5 /* Key.xcconfig */,
 				77E631AA2B58FC7600E225F5 /* ToWire */,
 				77E631C12B58FC7700E225F5 /* ToWireTests */,
 				77E631CB2B58FC7700E225F5 /* ToWireUITests */,
@@ -123,6 +129,7 @@
 				77E631EA2B59146D00E225F5 /* PickerTableViewCell.swift */,
 				77E631EC2B5915CC00E225F5 /* InputTableViewCell.swift */,
 				77E631EE2B5916C000E225F5 /* Models */,
+				77E631F32B59183800E225F5 /* Manager */,
 				77E631DF2B590AFB00E225F5 /* Helper */,
 				77E631DE2B590ADD00E225F5 /* SharedViews */,
 				77E631DB2B5908BB00E225F5 /* Resource */,
@@ -173,6 +180,7 @@
 				77E631E02B590B0700E225F5 /* Constants.swift */,
 				77E631E22B590B7000E225F5 /* Typography.swift */,
 				77E631E42B590BE600E225F5 /* Observable.swift */,
+				77E631F82B59239700E225F5 /* CurrencyType.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -184,6 +192,14 @@
 				77E631EF2B5916F900E225F5 /* ExchangeRateModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		77E631F32B59183800E225F5 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				77E631F42B59184C00E225F5 /* NetworkManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,6 +342,8 @@
 				77E631AC2B58FC7600E225F5 /* AppDelegate.swift in Sources */,
 				77E631E32B590B7000E225F5 /* Typography.swift in Sources */,
 				77E631ED2B5915CC00E225F5 /* InputTableViewCell.swift in Sources */,
+				77E631F92B59239700E225F5 /* CurrencyType.swift in Sources */,
+				77E631F52B59184C00E225F5 /* NetworkManager.swift in Sources */,
 				77E631AE2B58FC7600E225F5 /* SceneDelegate.swift in Sources */,
 				77E631E72B590CB500E225F5 /* CustomLabel.swift in Sources */,
 				77E631F02B5916F900E225F5 /* ExchangeRateModel.swift in Sources */,
@@ -492,6 +510,7 @@
 		};
 		77E631D32B58FC7700E225F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77E631FE2B593B2900E225F5 /* Key.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -519,6 +538,7 @@
 		};
 		77E631D42B58FC7700E225F5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77E631FE2B593B2900E225F5 /* Key.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
