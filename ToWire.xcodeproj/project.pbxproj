@@ -23,6 +23,8 @@
 		77E631E92B590FD800E225F5 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631E82B590FD800E225F5 /* TextTableViewCell.swift */; };
 		77E631EB2B59146D00E225F5 /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631EA2B59146D00E225F5 /* PickerTableViewCell.swift */; };
 		77E631ED2B5915CC00E225F5 /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631EC2B5915CC00E225F5 /* InputTableViewCell.swift */; };
+		77E631F02B5916F900E225F5 /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631EF2B5916F900E225F5 /* ExchangeRateModel.swift */; };
+		77E631F22B59181500E225F5 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631F12B59181500E225F5 /* NetworkModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		77E631E82B590FD800E225F5 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
 		77E631EA2B59146D00E225F5 /* PickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
 		77E631EC2B5915CC00E225F5 /* InputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
+		77E631EF2B5916F900E225F5 /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
+		77E631F12B59181500E225F5 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 				77E631E82B590FD800E225F5 /* TextTableViewCell.swift */,
 				77E631EA2B59146D00E225F5 /* PickerTableViewCell.swift */,
 				77E631EC2B5915CC00E225F5 /* InputTableViewCell.swift */,
+				77E631EE2B5916C000E225F5 /* Models */,
 				77E631DF2B590AFB00E225F5 /* Helper */,
 				77E631DE2B590ADD00E225F5 /* SharedViews */,
 				77E631DB2B5908BB00E225F5 /* Resource */,
@@ -170,6 +175,15 @@
 				77E631E42B590BE600E225F5 /* Observable.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		77E631EE2B5916C000E225F5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				77E631F12B59181500E225F5 /* NetworkModel.swift */,
+				77E631EF2B5916F900E225F5 /* ExchangeRateModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +319,7 @@
 				77E631E92B590FD800E225F5 /* TextTableViewCell.swift in Sources */,
 				77E631EB2B59146D00E225F5 /* PickerTableViewCell.swift in Sources */,
 				77E631E12B590B0700E225F5 /* Constants.swift in Sources */,
+				77E631F22B59181500E225F5 /* NetworkModel.swift in Sources */,
 				77E631B02B58FC7600E225F5 /* WireViewController.swift in Sources */,
 				77E631DD2B590AC200E225F5 /* WireViewModel.swift in Sources */,
 				77E631E52B590BE600E225F5 /* Observable.swift in Sources */,
@@ -313,6 +328,7 @@
 				77E631ED2B5915CC00E225F5 /* InputTableViewCell.swift in Sources */,
 				77E631AE2B58FC7600E225F5 /* SceneDelegate.swift in Sources */,
 				77E631E72B590CB500E225F5 /* CustomLabel.swift in Sources */,
+				77E631F02B5916F900E225F5 /* ExchangeRateModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
