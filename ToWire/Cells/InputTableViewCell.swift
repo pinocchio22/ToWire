@@ -21,7 +21,7 @@ class InputTableViewCell: UITableViewCell {
 
     private let separatorLabel = CustomLabel(text: ":", font: Typography.smallContent.font, alignment: .center)
 
-    private let inputTextField: UITextField = {
+    lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textAlignment = .right

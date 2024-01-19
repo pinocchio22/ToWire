@@ -31,7 +31,11 @@ class PickerTableViewCell: UITableViewCell {
         return textField
     }()
     
-    private let pickerView = UIPickerView()
+    private let pickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        pickerView.backgroundColor = .white
+        return pickerView
+    }()
     
     // MARK: LifeCycle
 
