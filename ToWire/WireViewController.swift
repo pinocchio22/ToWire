@@ -38,6 +38,13 @@ class WireViewController: UIViewController {
         label.textColor = label.text == "송금액이 바르지 않습니다." ? .black : .red
         return label
     }()
+    
+    lazy var indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.center = self.view.center
+        indicator.color = .black
+        return indicator
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +69,7 @@ private extension WireViewController {
         view.addSubview(titleLabel)
         view.addSubview(wireTableView)
         view.addSubview(resultLabel)
+        view.addSubview(indicator)
 
         NSLayoutConstraint.activate([
             // titleLabel
@@ -118,6 +126,7 @@ private extension WireViewController {
                 firstTextCell.updateUI(updateDescription: selectedItem.price.toString())
                 secondTextCell.updateUI(updateDescription: selectedItem.timeStamp.toDate())
             }
+            self.indicator.stopAnimating()
         }
     }
 
@@ -168,7 +177,13 @@ extension WireViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         wireViewModel.getPriceData(currencyType: CurrencyType.allCases[row]) { data in
+            DispatchQueue.main.async {
+                self.indicator.startAnimating()
+            }
             if data == nil {
+                DispatchQueue.main.async {
+//                    self.indicator.stopAnimating()
+                }
                 AlertMaker.showAlertAction(vc: self, title: "데이터를 가져오지 못했습니다.", message: "잠시후 다시 시도하세요.")
             } else {
                 self.wireViewModel.selectedItem.value = data

@@ -13,15 +13,15 @@ class WireViewModel {
     
     private let pickerItem = CurrencyType.allCases.map { $0.rawValue }
     
-    var selectedItem: Observable<ExchangeRateModel> = Observable(ExchangeRateModel(country: "국가 정보 없음", price: 3.0, timeStamp: 0.0, type: CurrencyType.USDKRW))
+    var selectedItem: Observable<ExchangeRateModel> = Observable(nil)
     
     var wirePrice: Observable<String> = Observable("")
     
     let uiModelList = [
         UIModel(title: "송금국가", description: "미국(USD)", type: .text),
-        UIModel(title: "수취국가", description: "한국(KRW)", type: .picker),
-        UIModel(title: "환율", description: "환율 조회중", type: .text),
-        UIModel(title: "조회시간", description: "환율 조회중", type: .text),
+        UIModel(title: "수취국가", description: "", type: .picker),
+        UIModel(title: "환율", description: "수취 국가를 선택하세요", type: .text),
+        UIModel(title: "조회시간", description: "수취 국가를 선택하세요", type: .text),
         UIModel(title: "송금액", description: "USD", type: .input),
     ]
     
