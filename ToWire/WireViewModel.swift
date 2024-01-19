@@ -48,6 +48,11 @@ class WireViewModel {
         return (selectedItem * number).toString()
     }
     
+    func isDigits(text: String) -> Bool {
+        let isAllLetters = text.unicodeScalars.allSatisfy { !CharacterSet.decimalDigits.contains($0) }
+        return isAllLetters
+    }
+    
     func getUIData() -> [UIModel] {
         return uiModelList
     }

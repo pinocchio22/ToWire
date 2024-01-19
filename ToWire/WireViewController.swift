@@ -35,10 +35,9 @@ class WireViewController: UIViewController {
 
     private let resultLabel: CustomLabel = {
         let label = CustomLabel(text: "수취금액", font: Typography.largeContent.font, alignment: .center)
-        label.textColor = label.text == "송금액이 바르지 않습니다." ? .black : .red
         return label
     }()
-    
+
     lazy var indicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.center = self.view.center
@@ -123,15 +122,18 @@ private extension WireViewController {
             if let firstTextCell = self.wireTableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? TextTableViewCell,
                let secondTextCell = self.wireTableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? TextTableViewCell
             {
-                firstTextCell.updateUI(updateDescription: selectedItem.price.toString())
+                firstTextCell.updateUI(updateDescription: "\(selectedItem.price.toString()) \(selectedItem.type.rateDscription)")
                 secondTextCell.updateUI(updateDescription: selectedItem.timeStamp.toDate())
             }
-            self.indicator.stopAnimating()
         }
     }
 
     func updateReultLabel() {
+        print(wireViewModel.getResultPrice())
         resultLabel.text = wireViewModel.getResultPrice()
+        if let text = resultLabel.text {
+            resultLabel.textColor = wireViewModel.isDigits(text: text) ? .red : .black
+        }
     }
 }
 
@@ -180,13 +182,17 @@ extension WireViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             DispatchQueue.main.async {
                 self.indicator.startAnimating()
             }
-            if data == nil {
-                DispatchQueue.main.async {
+
+            if data != nil {
+                self.wireViewModel.selectedItem.value = data
+            }
+
+            DispatchQueue.main.async {
+                if self.wireViewModel.selectedItem.value == nil {
+                    AlertMaker.showAlertAction(vc: self, title: "데이터를 가져오지 못했습니다.", message: "잠시후 다시 시도하세요.")
                     self.indicator.stopAnimating()
                 }
-                AlertMaker.showAlertAction(vc: self, title: "데이터를 가져오지 못했습니다.", message: "잠시후 다시 시도하세요.")
-            } else {
-                self.wireViewModel.selectedItem.value = data
+                self.indicator.stopAnimating()
             }
         }
     }
