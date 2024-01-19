@@ -15,6 +15,8 @@ class WireViewModel {
     
     var selectedItem: Observable<ExchangeRateModel> = Observable(ExchangeRateModel(country: "국가 정보 없음", price: 3.0, timeStamp: 0.0, type: CurrencyType.USDKRW))
     
+    var wirePrice: Observable<String> = Observable("")
+    
     let uiModelList = [
         UIModel(title: "송금국가", description: "미국(USD)", type: .text),
         UIModel(title: "수취국가", description: "한국(KRW)", type: .picker),
@@ -34,10 +36,12 @@ class WireViewModel {
         }
     }
     
-    func getResultPrice(text: String?) -> String {
-        guard let selectedItem = selectedItem.value?.price, let text = text, let number = Double(text), !text.isEmpty, (0 ... 10000).contains(number) else {
+    func getResultPrice() -> String {
+        guard let selectedItem = selectedItem.value?.price, let wirePrice = wirePrice.value, let number = Double(wirePrice), !wirePrice.isEmpty, (0 ... 10000).contains(number) else {
             return "송금액이 바르지 않습니다."
         }
+        print("@@@ selectedItem \(selectedItem)")
+        print("@@@ wirePrice \(wirePrice)")
         return (selectedItem * number).toString()
     }
     

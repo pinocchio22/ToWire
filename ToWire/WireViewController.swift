@@ -84,7 +84,12 @@ private extension WireViewController {
         wireViewModel.selectedItem.bind { selectedItem in
             if let selectedItem = selectedItem {
                 self.updateUI(selectedItem: selectedItem)
+                self.resultLabel.text = self.wireViewModel.getResultPrice()
             }
+        }
+        
+        wireViewModel.wirePrice.bind { wirePrice in
+            self.resultLabel.text = self.wireViewModel.getResultPrice()
         }
     }
 }
@@ -154,17 +159,13 @@ extension WireViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        wireViewModel.getPriceData(currencyType: CurrencyType.allCases[row]) { data in
-            if let data = data {
-                self.wireViewModel.selectedItem.value = data
-            }
-        }
+        wireViewModel.selectedItem.value?.type = CurrencyType.allCases[row]
     }
 }
 
 extension WireViewController: InputTableViewCellDelegate {
     func inputTableViewCell(cell: InputTableViewCell, didChangeText: String?, textField: UITextField) {
-        resultLabel.text = wireViewModel.getResultPrice(text: didChangeText)
+        wireViewModel.wirePrice.value = didChangeText
     }
 }
 
