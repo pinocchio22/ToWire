@@ -56,3 +56,31 @@ class NetworkManager {
         dataTask.resume()
     }
 }
+
+extension NetworkManager {
+    // MARK: Dummy
+    
+    func fetchDummyData(completion: @escaping (ExchangeRateModel?) -> Void) {
+        guard let path = Bundle.main.path(forResource: "Dummy", ofType: "json") else { return }
+        
+        guard let jsonString = try? String(contentsOfFile: path) else { return }
+        
+        let decoder = JSONDecoder()
+        let data = jsonString.data(using: .utf8)
+        if let data = data {
+            if let networkModel = try? decoder.decode(NetworkModel.self, from: data) {
+                networkModel.quotes.forEach { item in
+                    switch item.key {
+                    case CurrencyType.USDKRW.description:
+                        completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDKRW))
+                    case CurrencyType.USDJPY.description:
+                        completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDJPY))
+                    case CurrencyType.USDPHP.description:
+                        completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDPHP))
+                    default: break
+                    }
+                }
+            }
+        }
+    }
+}

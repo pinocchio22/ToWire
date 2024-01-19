@@ -27,7 +27,8 @@ class WireViewModel {
     
     // MARK: Method
     func getPriceData(currencyType: CurrencyType, completion: @escaping (ExchangeRateModel?) -> Void) {
-        networkManager.fetchData { data in
+//        networkManager.fetchData { data in
+        networkManager.fetchDummyData { data in
             guard let data = data else {
                 completion(nil)
                 return

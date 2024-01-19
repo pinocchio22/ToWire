@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7702AA5B2B5AA016003F3D2A /* AlertMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7702AA5A2B5AA016003F3D2A /* AlertMaker.swift */; };
+		7702AA5D2B5AC080003F3D2A /* Dummy.json in Resources */ = {isa = PBXBuildFile; fileRef = 7702AA5C2B5AC080003F3D2A /* Dummy.json */; };
 		77E631AC2B58FC7600E225F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631AB2B58FC7600E225F5 /* AppDelegate.swift */; };
 		77E631AE2B58FC7600E225F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631AD2B58FC7600E225F5 /* SceneDelegate.swift */; };
 		77E631B02B58FC7600E225F5 /* WireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631AF2B58FC7600E225F5 /* WireViewController.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		7702AA5A2B5AA016003F3D2A /* AlertMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMaker.swift; sourceTree = "<group>"; };
+		7702AA5C2B5AC080003F3D2A /* Dummy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Dummy.json; sourceTree = "<group>"; };
 		77E631A82B58FC7600E225F5 /* ToWire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToWire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E631AB2B58FC7600E225F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77E631AD2B58FC7600E225F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,11 +111,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7702AA5E2B5AC087003F3D2A /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				7702AA5C2B5AC080003F3D2A /* Dummy.json */,
+			);
+			path = Dummy;
+			sourceTree = "<group>";
+		};
 		77E6319F2B58FC7600E225F5 = {
 			isa = PBXGroup;
 			children = (
 				77E631FE2B593B2900E225F5 /* Key.xcconfig */,
 				77E631AA2B58FC7600E225F5 /* ToWire */,
+				7702AA5E2B5AC087003F3D2A /* Dummy */,
 				77E631C12B58FC7700E225F5 /* ToWireTests */,
 				77E631CB2B58FC7700E225F5 /* ToWireUITests */,
 				77E631A92B58FC7600E225F5 /* Products */,
@@ -337,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7702AA5D2B5AC080003F3D2A /* Dummy.json in Resources */,
 				77E631B82B58FC7700E225F5 /* LaunchScreen.storyboard in Resources */,
 				77E631B52B58FC7700E225F5 /* Assets.xcassets in Resources */,
 			);
