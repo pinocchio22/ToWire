@@ -7,7 +7,15 @@
 
 import UIKit
 
+protocol PickerTableViewCellDelegate: AnyObject {
+    func setDelegate(pickerView: UIPickerView)
+}
+
 class PickerTableViewCell: UITableViewCell {
+    // MARK: Properties
+
+    weak var delegate: PickerTableViewCellDelegate?
+    
     // MARK: Components
 
     private let titleLabel = CustomLabel(text: "text", font: Typography.smallContent.font, alignment: .right)
@@ -42,6 +50,7 @@ class PickerTableViewCell: UITableViewCell {
     func bind(title: String, pickerItem: String) {
         titleLabel.text = title
         pickerTextField.text = pickerItem
+        delegate?.setDelegate(pickerView: pickerView)
     }
 }
 
@@ -87,10 +96,5 @@ extension PickerTableViewCell {
     
     func updateUI(updatePickerItem: String) {
         pickerTextField.text = updatePickerItem
-    }
-    
-    func setDelegate(view: WireViewController) {
-        pickerView.delegate = view
-        pickerView.dataSource = view
     }
 }

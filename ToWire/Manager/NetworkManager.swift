@@ -12,8 +12,7 @@ class NetworkManager {
         let session = URLSession.shared
         
         var urlComponents = URLComponents(string: "http://www.apilayer.net/api/live?")
-//        let myKey = Bundle.main.object(forInfoDictionaryKey: "CURRENCY_LAYER_KEY") as? String
-        let myKey = ""
+        let myKey = Bundle.main.object(forInfoDictionaryKey: "CURRENCY_LAYER_KEY") as? String
         let keyQuery = URLQueryItem(name: "access_key", value: myKey)
         
         urlComponents?.queryItems?.append(keyQuery)

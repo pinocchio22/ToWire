@@ -123,19 +123,19 @@ extension WireViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch item.type {
         case .text:
-            let textCell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell.identifier, for: indexPath) as? TextTableViewCell
-            textCell?.bind(title: item.title, descripTion: item.description)
-            return textCell ?? UITableViewCell()
+            guard let textCell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell.identifier, for: indexPath) as? TextTableViewCell else { return UITableViewCell() }
+            textCell.bind(title: item.title, descripTion: item.description)
+            return textCell
         case .picker:
-            let pickerCell = tableView.dequeueReusableCell(withIdentifier: PickerTableViewCell.identifier, for: indexPath) as? PickerTableViewCell
-            pickerCell?.setDelegate(view: self)
-            pickerCell?.bind(title: item.title, pickerItem: wireViewModel.selectedItem.value?.type.rawValue ?? "")
-            return pickerCell ?? UITableViewCell()
+            guard let pickerCell = tableView.dequeueReusableCell(withIdentifier: PickerTableViewCell.identifier, for: indexPath) as? PickerTableViewCell else { return UITableViewCell() }
+            pickerCell.delegate = self
+            pickerCell.bind(title: item.title, pickerItem: wireViewModel.selectedItem.value?.type.rawValue ?? "")
+            return pickerCell
         case .input:
-            let inputCell = tableView.dequeueReusableCell(withIdentifier: InputTableViewCell.identifier, for: indexPath) as? InputTableViewCell
-            inputCell?.delegate = self
-            inputCell?.bind(title: item.title, inputPrice: "")
-            return inputCell ?? UITableViewCell()
+            guard let inputCell = tableView.dequeueReusableCell(withIdentifier: InputTableViewCell.identifier, for: indexPath) as? InputTableViewCell else { return UITableViewCell() }
+            inputCell.delegate = self
+            inputCell.bind(title: item.title, inputPrice: "")
+            return inputCell
         }
     }
 }
@@ -165,5 +165,12 @@ extension WireViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 extension WireViewController: InputTableViewCellDelegate {
     func inputTableViewCell(cell: InputTableViewCell, didChangeText: String?, textField: UITextField) {
         resultLabel.text = wireViewModel.getResultPrice(text: didChangeText)
+    }
+}
+
+extension WireViewController: PickerTableViewCellDelegate {
+    func setDelegate(pickerView: UIPickerView) {
+        pickerView.delegate = self
+        pickerView.dataSource = self
     }
 }
