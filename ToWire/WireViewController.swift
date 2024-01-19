@@ -182,7 +182,7 @@ extension WireViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             }
             if data == nil {
                 DispatchQueue.main.async {
-//                    self.indicator.stopAnimating()
+                    self.indicator.stopAnimating()
                 }
                 AlertMaker.showAlertAction(vc: self, title: "데이터를 가져오지 못했습니다.", message: "잠시후 다시 시도하세요.")
             } else {
