@@ -26,6 +26,15 @@ class InputTableViewCell: UITableViewCell {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textAlignment = .right
         textField.placeholder = "금액"
+        textField.keyboardType = .numberPad
+
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+
+        let completeButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(tapCompleteButton))
+        toolbar.setItems([completeButton], animated: false)
+
+        textField.inputAccessoryView = toolbar
         return textField
     }()
 
@@ -60,7 +69,7 @@ private extension InputTableViewCell {
         inputTextField.delegate = self
         setUpConstraints()
     }
-    
+
     func setUpConstraints() {
         addSubview(titleLabel)
         addSubview(separatorLabel)
@@ -95,12 +104,21 @@ private extension InputTableViewCell {
     }
 }
 
+private extension InputTableViewCell {
+    // MARK: Method
+
+    @objc
+    func tapCompleteButton() {
+        inputTextField.resignFirstResponder()
+    }
+}
+
 extension InputTableViewCell: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         let range = Range(range, in: currentText)!
         let updatedText = currentText.replacingCharacters(in: range, with: string)
-        
+
         delegate?.inputTableViewCell(cell: self, didChangeText: updatedText, textField: textField)
 
         return true
