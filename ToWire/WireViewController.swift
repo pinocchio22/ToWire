@@ -13,6 +13,12 @@ class WireViewController: UIViewController {
     let wireViewModel = WireViewModel()
     var uiModelList: [UIModel]?
 
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+
     // MARK: Components
 
     private let titleLabel = CustomLabel(text: "환율 계산", font: Typography.title.font, alignment: .center)
@@ -62,7 +68,7 @@ private extension WireViewController {
             wireTableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constanst.defaults.vertical),
             wireTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constanst.defaults.horizontal),
             wireTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Constanst.defaults.horizontal),
-            wireTableView.heightAnchor.constraint(equalToConstant: 200),
+            wireTableView.heightAnchor.constraint(equalToConstant: Constanst.screenHeight * 0.3),
 
             // resultLabel
             resultLabel.topAnchor.constraint(equalTo: wireTableView.bottomAnchor, constant: Constanst.defaults.vertical),
@@ -76,13 +82,8 @@ private extension WireViewController {
 
     func bind() {
         wireViewModel.selectedItem.bind { selectedItem in
-            guard let selectedItem = selectedItem else { return }
-            // API call
-            self.wireViewModel.getPriceData(currencyType: selectedItem) { data in
-                // UI update
-                if let data = data {
-                    self.updateUI(selectedItem: data)
-                }
+            if let selectedItem = selectedItem {
+                self.updateUI(selectedItem: selectedItem)
             }
         }
     }
@@ -108,7 +109,6 @@ private extension WireViewController {
                 firstTextCell.updateUI(updateDescription: selectedItem.price.toString())
                 secondTextCell.updateUI(updateDescription: selectedItem.timeStamp.toDate())
             }
-            print(selectedItem)
         }
     }
 }
@@ -129,10 +129,11 @@ extension WireViewController: UITableViewDelegate, UITableViewDataSource {
         case .picker:
             let pickerCell = tableView.dequeueReusableCell(withIdentifier: PickerTableViewCell.identifier, for: indexPath) as? PickerTableViewCell
             pickerCell?.setDelegate(view: self)
-            pickerCell?.bind(title: item.title, pickerItem: wireViewModel.selectedItem.value?.rawValue ?? "")
+            pickerCell?.bind(title: item.title, pickerItem: wireViewModel.selectedItem.value?.type.rawValue ?? "")
             return pickerCell ?? UITableViewCell()
         case .input:
             let inputCell = tableView.dequeueReusableCell(withIdentifier: InputTableViewCell.identifier, for: indexPath) as? InputTableViewCell
+            inputCell?.delegate = self
             inputCell?.bind(title: item.title, inputPrice: "")
             return inputCell ?? UITableViewCell()
         }
@@ -153,6 +154,16 @@ extension WireViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        wireViewModel.selectedItem.value = CurrencyType.allCases[row]
+        wireViewModel.getPriceData(currencyType: CurrencyType.allCases[row]) { data in
+            if let data = data {
+                self.wireViewModel.selectedItem.value = data
+            }
+        }
+    }
+}
+
+extension WireViewController: InputTableViewCellDelegate {
+    func inputTableViewCell(cell: InputTableViewCell, didChangeText: String?, textField: UITextField) {
+        resultLabel.text = wireViewModel.getResultPrice(text: didChangeText)
     }
 }

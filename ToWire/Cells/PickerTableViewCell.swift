@@ -89,7 +89,7 @@ extension PickerTableViewCell {
         pickerTextField.text = updatePickerItem
     }
     
-    func setDelegate(view: UIViewController & UIPickerViewDelegate & UIPickerViewDataSource) {
+    func setDelegate(view: WireViewController) {
         pickerView.delegate = view
         pickerView.dataSource = view
     }
