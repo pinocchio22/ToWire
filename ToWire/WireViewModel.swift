@@ -28,6 +28,10 @@ class WireViewModel {
     // MARK: Method
     func getPriceData(currencyType: CurrencyType, completion: @escaping (ExchangeRateModel?) -> Void) {
         networkManager.fetchData { data in
+            guard let data = data else {
+                completion(nil)
+                return
+            }
             if data.type == currencyType {
                 completion(data)
             } else {
@@ -40,8 +44,6 @@ class WireViewModel {
         guard let selectedItem = selectedItem.value?.price, let wirePrice = wirePrice.value, let number = Double(wirePrice), !wirePrice.isEmpty, (0 ... 10000).contains(number) else {
             return "송금액이 바르지 않습니다."
         }
-        print("@@@ selectedItem \(selectedItem)")
-        print("@@@ wirePrice \(wirePrice)")
         return (selectedItem * number).toString()
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7702AA5B2B5AA016003F3D2A /* AlertMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7702AA5A2B5AA016003F3D2A /* AlertMaker.swift */; };
 		77E631AC2B58FC7600E225F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631AB2B58FC7600E225F5 /* AppDelegate.swift */; };
 		77E631AE2B58FC7600E225F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631AD2B58FC7600E225F5 /* SceneDelegate.swift */; };
 		77E631B02B58FC7600E225F5 /* WireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E631AF2B58FC7600E225F5 /* WireViewController.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7702AA5A2B5AA016003F3D2A /* AlertMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMaker.swift; sourceTree = "<group>"; };
 		77E631A82B58FC7600E225F5 /* ToWire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToWire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E631AB2B58FC7600E225F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77E631AD2B58FC7600E225F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				77E631E42B590BE600E225F5 /* Observable.swift */,
 				77E631F82B59239700E225F5 /* CurrencyType.swift */,
 				77E632022B59423000E225F5 /* CellType.swift */,
+				7702AA5A2B5AA016003F3D2A /* AlertMaker.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				77E631F22B59181500E225F5 /* NetworkModel.swift in Sources */,
 				77E631B02B58FC7600E225F5 /* WireViewController.swift in Sources */,
 				77E631DD2B590AC200E225F5 /* WireViewModel.swift in Sources */,
+				7702AA5B2B5AA016003F3D2A /* AlertMaker.swift in Sources */,
 				77E631E52B590BE600E225F5 /* Observable.swift in Sources */,
 				77E632012B5941E300E225F5 /* UIModel.swift in Sources */,
 				77E631AC2B58FC7600E225F5 /* AppDelegate.swift in Sources */,

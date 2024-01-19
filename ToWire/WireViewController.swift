@@ -33,7 +33,11 @@ class WireViewController: UIViewController {
         return tableView
     }()
 
-    private let resultLabel = CustomLabel(text: "수취금액", font: Typography.largeContent.font, alignment: .center)
+    private let resultLabel: CustomLabel = {
+        let label = CustomLabel(text: "수취금액", font: Typography.largeContent.font, alignment: .center)
+        label.textColor = label.text == "송금액이 바르지 않습니다." ? .black : .red
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,12 +88,12 @@ private extension WireViewController {
         wireViewModel.selectedItem.bind { selectedItem in
             if let selectedItem = selectedItem {
                 self.updateUI(selectedItem: selectedItem)
-                self.resultLabel.text = self.wireViewModel.getResultPrice()
+                self.updateReultLabel()
             }
         }
-        
-        wireViewModel.wirePrice.bind { wirePrice in
-            self.resultLabel.text = self.wireViewModel.getResultPrice()
+
+        wireViewModel.wirePrice.bind { _ in
+            self.updateReultLabel()
         }
     }
 }
@@ -115,6 +119,10 @@ private extension WireViewController {
                 secondTextCell.updateUI(updateDescription: selectedItem.timeStamp.toDate())
             }
         }
+    }
+
+    func updateReultLabel() {
+        resultLabel.text = wireViewModel.getResultPrice()
     }
 }
 
@@ -159,7 +167,13 @@ extension WireViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        wireViewModel.selectedItem.value?.type = CurrencyType.allCases[row]
+        wireViewModel.getPriceData(currencyType: CurrencyType.allCases[row]) { data in
+            if data == nil {
+                AlertMaker.showAlertAction(vc: self, title: "데이터를 가져오지 못했습니다.", message: "잠시후 다시 시도하세요.")
+            } else {
+                self.wireViewModel.selectedItem.value = data
+            }
+        }
     }
 }
 

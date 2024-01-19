@@ -8,7 +8,7 @@
 import Foundation
 
 class NetworkManager {
-    func fetchData(completion: @escaping (ExchangeRateModel) -> Void) {
+    func fetchData(completion: @escaping (ExchangeRateModel?) -> Void) {
         let session = URLSession.shared
         
         var urlComponents = URLComponents(string: "http://www.apilayer.net/api/live?")
@@ -18,6 +18,7 @@ class NetworkManager {
         urlComponents?.queryItems?.append(keyQuery)
 
         guard let requestURL = urlComponents?.url else {
+            completion(nil)
             print("잘못된 url 입니다.")
             return
         }
@@ -45,6 +46,7 @@ class NetworkManager {
                         }
                     }
                 } catch {
+                    completion(nil)
                     print("JSON 디코딩 실패: \(error)")
                 }
             } else {

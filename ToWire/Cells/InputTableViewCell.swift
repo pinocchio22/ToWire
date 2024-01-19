@@ -25,7 +25,7 @@ class InputTableViewCell: UITableViewCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textAlignment = .right
-        textField.placeholder = "금액"
+        textField.placeholder = "0"
         textField.keyboardType = .numberPad
 
         let toolbar = UIToolbar()
