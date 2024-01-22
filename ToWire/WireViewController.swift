@@ -98,7 +98,9 @@ private extension WireViewController {
 
         wireViewModel.uiModelList.bind { [weak self] _ in
             self?.getUIList()
-            self?.wireTableView.reloadRows(at: [IndexPath(row: TableCellIndex.recieve.rawValue - 1, section: 0), IndexPath(row: TableCellIndex.exchange.rawValue - 1, section: 0), IndexPath(row: TableCellIndex.time.rawValue - 1, section: 0)], with: .automatic)
+            DispatchQueue.main.async {
+                self?.wireTableView.reloadRows(at: [IndexPath(row: TableCellIndex.recieve.rawValue - 1, section: 0), IndexPath(row: TableCellIndex.exchange.rawValue - 1, section: 0), IndexPath(row: TableCellIndex.time.rawValue - 1, section: 0)], with: .automatic)
+            }
         }
     }
 }
@@ -116,9 +118,11 @@ private extension WireViewController {
     }
 
     func updateReultLabel() {
-        resultLabel.text = wireViewModel.getResultPrice()
-        if let text = resultLabel.text {
-            resultLabel.textColor = wireViewModel.isDigits(text: text) ? .red : .black
+        DispatchQueue.main.async {
+            self.resultLabel.text = self.wireViewModel.getResultPrice()
+            if let text = self.resultLabel.text {
+                self.resultLabel.textColor = self.wireViewModel.isDigits(text: text) ? .red : .black
+            }
         }
     }
 }
