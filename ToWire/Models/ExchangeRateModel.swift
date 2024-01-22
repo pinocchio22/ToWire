@@ -8,7 +8,6 @@
 import Foundation
 
 struct ExchangeRateModel: Codable {
-    var country: String
     var price: Double
     var timeStamp: Double
     var type: CurrencyType

@@ -37,11 +37,11 @@ class NetworkManager {
                     networkModel.quotes.forEach { item in
                         switch item.key {
                         case CurrencyType.USDKRW.description:
-                            completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDKRW))
+                            completion(ExchangeRateModel(price: item.value, timeStamp: networkModel.timestamp, type: .USDKRW))
                         case CurrencyType.USDJPY.description:
-                            completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDJPY))
+                            completion(ExchangeRateModel(price: item.value, timeStamp: networkModel.timestamp, type: .USDJPY))
                         case CurrencyType.USDPHP.description:
-                            completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDPHP))
+                            completion(ExchangeRateModel(price: item.value, timeStamp: networkModel.timestamp, type: .USDPHP))
                         default: break
                         }
                     }
@@ -72,11 +72,11 @@ extension NetworkManager {
                 networkModel.quotes.forEach { item in
                     switch item.key {
                     case CurrencyType.USDKRW.description:
-                        completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDKRW))
+                        completion(ExchangeRateModel(price: item.value, timeStamp: networkModel.timestamp, type: .USDKRW))
                     case CurrencyType.USDJPY.description:
-                        completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDJPY))
+                        completion(ExchangeRateModel(price: item.value, timeStamp: networkModel.timestamp, type: .USDJPY))
                     case CurrencyType.USDPHP.description:
-                        completion(ExchangeRateModel(country: item.key, price: item.value, timeStamp: networkModel.timestamp, type: .USDPHP))
+                        completion(ExchangeRateModel(price: item.value, timeStamp: networkModel.timestamp, type: .USDPHP))
                     default: break
                     }
                 }
