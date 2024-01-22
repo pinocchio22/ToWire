@@ -92,15 +92,16 @@ private extension WireViewController {
     // MARK: Bind
 
     func bind() {
-        wireViewModel.selectedItem.bind { selectedItem in
+        wireViewModel.selectedItem.bind { [weak self] selectedItem in
             if let selectedItem = selectedItem {
-                self.updateUI(selectedItem: selectedItem)
-                self.updateReultLabel()
+                self?.updateUI(selectedItem: selectedItem)
+                self?.updateReultLabel()
             }
         }
 
-        wireViewModel.wirePrice.bind { _ in
-            self.updateReultLabel()
+
+        wireViewModel.wirePrice.bind { [weak self] _ in
+            self?.updateReultLabel()
         }
     }
 }
@@ -115,12 +116,14 @@ private extension WireViewController {
 
     func updateUI(selectedItem: ExchangeRateModel) {
         DispatchQueue.main.async {
-            if let pickerCell = self.wireTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PickerTableViewCell {
+            let section = 0
+            print(TableCellIndex.send.rawValue)
+            if let pickerCell = self.wireTableView.cellForRow(at: IndexPath(row: TableCellIndex.send.rawValue, section: section)) as? PickerTableViewCell {
                 pickerCell.updateUI(updatePickerItem: selectedItem.type.rawValue)
             }
 
-            if let firstTextCell = self.wireTableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? TextTableViewCell,
-               let secondTextCell = self.wireTableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? TextTableViewCell
+            if let firstTextCell = self.wireTableView.cellForRow(at: IndexPath(row: TableCellIndex.recieve.rawValue, section: section)) as? TextTableViewCell,
+               let secondTextCell = self.wireTableView.cellForRow(at: IndexPath(row: TableCellIndex.exchange.rawValue, section: section)) as? TextTableViewCell
             {
                 firstTextCell.updateUI(updateDescription: "\(selectedItem.price.toString()) \(selectedItem.type.rateDscription)")
                 secondTextCell.updateUI(updateDescription: selectedItem.timeStamp.toDate())
@@ -208,5 +211,6 @@ extension WireViewController: PickerTableViewCellDelegate {
     func setDelegate(pickerView: UIPickerView) {
         pickerView.delegate = self
         pickerView.dataSource = self
+        pickerView.selectRow(0, inComponent: 0, animated: false)
     }
 }

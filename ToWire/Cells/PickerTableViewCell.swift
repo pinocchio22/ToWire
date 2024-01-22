@@ -28,6 +28,7 @@ class PickerTableViewCell: UITableViewCell {
         textField.tintColor = .clear
         textField.borderStyle = .none
         textField.inputView = self.pickerView
+        textField.placeholder = "수취국가를 선택하세요."
         return textField
     }()
     
