@@ -9,12 +9,15 @@ import UIKit
 
 protocol PickerTableViewCellDelegate: AnyObject {
     func setDelegate(pickerView: UIPickerView)
+    func selectedRowInPickerView() -> Int
 }
 
 class PickerTableViewCell: UITableViewCell {
     // MARK: Properties
 
     weak var delegate: PickerTableViewCellDelegate?
+    
+    private var selectedRowIndex = 0
     
     // MARK: Components
 
@@ -27,8 +30,8 @@ class PickerTableViewCell: UITableViewCell {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.tintColor = .clear
         textField.borderStyle = .none
-        textField.inputView = self.pickerView
         textField.placeholder = "수취국가를 선택하세요."
+        textField.inputView = self.pickerView
         return textField
     }()
     
@@ -56,6 +59,8 @@ class PickerTableViewCell: UITableViewCell {
         titleLabel.text = title
         pickerTextField.text = pickerItem
         delegate?.setDelegate(pickerView: pickerView)
+        selectedRowIndex = delegate?.selectedRowInPickerView() ?? 0
+        pickerView.selectRow(selectedRowIndex, inComponent: 0, animated: true)
     }
 }
 

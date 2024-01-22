@@ -12,13 +12,13 @@ enum AlertMaker {
         guard let currentVc = vc else {
             return
         }
-                
+
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
             let completeAction = UIAlertAction(title: completeTitle, style: .default)
-                    
+
             alert.addAction(completeAction)
-                    
+
             if let alertController = currentVc.presentedViewController as? UIAlertController {
                 alertController.dismiss(animated: true) {
                     currentVc.present(alert, animated: true, completion: nil)

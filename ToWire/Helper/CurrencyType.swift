@@ -15,7 +15,7 @@ enum CurrencyType: String, CaseIterable, Codable {
     var description: String {
         return String(describing: self)
     }
-    
+
     var rateDscription: String {
         switch self {
         case .USDKRW:

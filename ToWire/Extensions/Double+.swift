@@ -15,7 +15,7 @@ extension Double {
         dateFormatter.timeZone = TimeZone(abbreviation: "KST")
         return dateFormatter.string(from: Date(timeIntervalSince1970: self))
     }
-    
+
     func toString() -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal

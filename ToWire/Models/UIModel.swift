@@ -9,6 +9,6 @@ import Foundation
 
 struct UIModel {
     let title: String
-    let description: String
+    var description: String
     let type: CellType
 }

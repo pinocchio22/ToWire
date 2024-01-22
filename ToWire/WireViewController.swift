@@ -10,14 +10,9 @@ import UIKit
 class WireViewController: UIViewController {
     // MARK: Properties
 
-    let wireViewModel = WireViewModel()
-    var uiModelList: [UIModel]?
-
-    private let numberFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        return formatter
-    }()
+    private let wireViewModel = WireViewModel()
+    private var uiModelList: [UIModel]?
+    private var selectedRowIndex = 0
 
     // MARK: Components
 
@@ -25,6 +20,7 @@ class WireViewController: UIViewController {
 
     private let wireTableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(TextTableViewCell.self, forCellReuseIdentifier: TextTableViewCell.identifier)
@@ -50,7 +46,6 @@ class WireViewController: UIViewController {
         view.backgroundColor = .white
         setUp()
         bind()
-        getUIList()
     }
 }
 
@@ -92,16 +87,18 @@ private extension WireViewController {
     // MARK: Bind
 
     func bind() {
-        wireViewModel.selectedItem.bind { [weak self] selectedItem in
-            if let selectedItem = selectedItem {
-                self?.updateUI(selectedItem: selectedItem)
-                self?.updateReultLabel()
-            }
+        wireViewModel.selectedItem.bind { [weak self] _ in
+            self?.wireViewModel.updateUiModel()
+            self?.updateReultLabel()
         }
-
 
         wireViewModel.wirePrice.bind { [weak self] _ in
             self?.updateReultLabel()
+        }
+
+        wireViewModel.uiModelList.bind { [weak self] _ in
+            self?.getUIList()
+            self?.wireTableView.reloadRows(at: [IndexPath(row: TableCellIndex.recieve.rawValue - 1, section: 0), IndexPath(row: TableCellIndex.exchange.rawValue - 1, section: 0), IndexPath(row: TableCellIndex.time.rawValue - 1, section: 0)], with: .automatic)
         }
     }
 }
@@ -110,29 +107,15 @@ private extension WireViewController {
     // MARK: Method
 
     func getUIList() {
-        uiModelList = wireViewModel.getUIData()
-        wireTableView.reloadData()
-    }
-
-    func updateUI(selectedItem: ExchangeRateModel) {
-        DispatchQueue.main.async {
-            let section = 0
-            print(TableCellIndex.send.rawValue)
-            if let pickerCell = self.wireTableView.cellForRow(at: IndexPath(row: TableCellIndex.send.rawValue, section: section)) as? PickerTableViewCell {
-                pickerCell.updateUI(updatePickerItem: selectedItem.type.rawValue)
-            }
-
-            if let firstTextCell = self.wireTableView.cellForRow(at: IndexPath(row: TableCellIndex.recieve.rawValue, section: section)) as? TextTableViewCell,
-               let secondTextCell = self.wireTableView.cellForRow(at: IndexPath(row: TableCellIndex.exchange.rawValue, section: section)) as? TextTableViewCell
-            {
-                firstTextCell.updateUI(updateDescription: "\(selectedItem.price.toString()) \(selectedItem.type.rateDscription)")
-                secondTextCell.updateUI(updateDescription: selectedItem.timeStamp.toDate())
+        uiModelList = wireViewModel.getUIData {
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+                print("stop")
             }
         }
     }
 
     func updateReultLabel() {
-        print(wireViewModel.getResultPrice())
         resultLabel.text = wireViewModel.getResultPrice()
         if let text = resultLabel.text {
             resultLabel.textColor = wireViewModel.isDigits(text: text) ? .red : .black
@@ -181,21 +164,18 @@ extension WireViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        wireViewModel.getPriceData(currencyType: CurrencyType.allCases[row]) { data in
-            DispatchQueue.main.async {
-                self.indicator.startAnimating()
-            }
+        DispatchQueue.main.async {
+            self.indicator.startAnimating()
+        }
 
-            if data != nil {
-                self.wireViewModel.selectedItem.value = data
-            }
+        selectedRowIndex = row
+        wireViewModel.getPriceData(currencyType: CurrencyType.allCases[row]) { _ in
 
             DispatchQueue.main.async {
                 if self.wireViewModel.selectedItem.value == nil {
                     AlertMaker.showAlertAction(vc: self, title: "데이터를 가져오지 못했습니다.", message: "잠시후 다시 시도하세요.")
                     self.indicator.stopAnimating()
                 }
-                self.indicator.stopAnimating()
             }
         }
     }
@@ -212,5 +192,9 @@ extension WireViewController: PickerTableViewCellDelegate {
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.selectRow(0, inComponent: 0, animated: false)
+    }
+
+    func selectedRowInPickerView() -> Int {
+        return selectedRowIndex
     }
 }

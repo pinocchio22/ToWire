@@ -9,6 +9,7 @@ import Foundation
 
 class WireViewModel {
     // MARK: Properties
+
     private let networkManager = NetworkManager()
     
     private let pickerItem = CurrencyType.allCases.map { $0.rawValue }
@@ -17,9 +18,10 @@ class WireViewModel {
     
     var wirePrice: Observable<String> = Observable("")
     
-    private let uiModelList = TableCellIndex.allCases.map { UIModel(title: $0.title, description: $0.description, type: $0.type) }
+    var uiModelList: Observable<[UIModel]> = Observable(TableCellIndex.allCases.map { UIModel(title: $0.title, description: $0.description, type: $0.type) })
     
     // MARK: Method
+
     func getPriceData(currencyType: CurrencyType, completion: @escaping (ExchangeRateModel?) -> Void) {
 //        networkManager.fetchData { data in
         networkManager.fetchDummyData { data in
@@ -28,10 +30,19 @@ class WireViewModel {
                 return
             }
             if data.type == currencyType {
+                self.selectedItem.value = data
                 completion(data)
             } else {
                 completion(nil)
             }
+        }
+    }
+    
+    func updateUiModel() {
+        if let type = selectedItem.value?.type, let price = selectedItem.value?.price, let time = selectedItem.value?.timeStamp {
+            uiModelList.value?[TableCellIndex.recieve.rawValue - 1].description = type.description
+            uiModelList.value?[TableCellIndex.exchange.rawValue - 1].description = String(price)
+            uiModelList.value?[TableCellIndex.time.rawValue - 1].description = time.toDate()
         }
     }
     
@@ -47,12 +58,15 @@ class WireViewModel {
         return isAllLetters
     }
     
-    func getUIData() -> [UIModel] {
-        return uiModelList
+    func getUIData(completion: @escaping () -> Void) -> [UIModel] {
+        guard let model = uiModelList.value else { return [] }
+        completion()
+        return model
     }
     
     func getDataCount() -> Int {
-        return uiModelList.count
+        guard let count = uiModelList.value?.count else { return 0 }
+        return count
     }
     
     func getPickerItem() -> [String] {
