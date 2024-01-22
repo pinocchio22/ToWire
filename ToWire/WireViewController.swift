@@ -112,7 +112,6 @@ private extension WireViewController {
         uiModelList = wireViewModel.getUIData {
             DispatchQueue.main.async {
                 self.indicator.stopAnimating()
-                print("stop")
             }
         }
     }

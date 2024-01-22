@@ -22,19 +22,16 @@ class WireViewModel {
     
     // MARK: Method
 
-    func getPriceData(currencyType: CurrencyType, completion: @escaping (ExchangeRateModel?) -> Void) {
+    func getPriceData(currencyType: CurrencyType, completion: @escaping (Bool) -> Void) {
         networkManager.fetchData { data in
-//        networkManager.fetchDummyData { data in
             guard let data = data else {
-                completion(nil)
+                completion(false)
                 return
             }
-            if data.type == currencyType {
-                self.selectedItem.value = data
-                completion(data)
-            } else {
-                completion(nil)
-            }
+            
+            guard let filterdDate = data.filter({ $0.type == currencyType }).first else { return }
+            self.selectedItem.value = filterdDate
+            completion(true)
         }
     }
     
